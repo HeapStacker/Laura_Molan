@@ -1,0 +1,611 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 16px;
+}
+/* .lightMode {
+    --color0: rgb(228, 206, 6);
+    --color1: rgb(0, 116, 225);
+    --color2: rgb(57, 57, 244);
+    --color3: rgb(56, 56, 216);
+    
+    --color4: white;
+    --color5: rgb(255, 85, 196);
+    --color6: black;
+    
+    --color7: rgb(16, 75, 126);
+} */
+.lightMode {
+    --color0: rgb(228, 206, 6);
+    --color1: #e7c6ff;
+    --color2: #e7c6ff;
+    --color3: #c8b6ff;
+    
+    --color4: black;
+    --color5: #b8c0ff;
+    --color6: #bbd0ff;
+    
+    --color7: rgb(16, 75, 126);
+}
+.darkMode {
+    --color0: rgb(228, 206, 6);
+    --color1: rgb(0, 0, 0);
+    --color2: rgb(29, 27, 27);
+    --color3: rgb(55, 55, 58);
+
+    --color4: white;
+    --color5: rgb(255, 85, 196);
+    --color6: black;
+}
+body {
+    overflow-x: hidden;
+    background-color: var(--color1);
+    max-width: 100vw;
+    color: var(--color4);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.layout {
+    display: flex;
+    height: 100%;
+
+    background-color: var(--color2);
+    background-image: url("changeable_images/bacteria.png"); 
+    background-size: 200px;
+}
+.navOpener {
+    flex: 0 0 50px;
+    text-align: center;
+    background-color: var(--color3);
+    z-index: 1;
+}
+
+.navOpener .holder {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.navOpener i:hover {
+    color: var(--color1);
+}
+
+.layout nav {
+    flex: 0 0 200px;
+    background-color: var(--color2);
+    box-sizing: border-box;
+
+    z-index: 1;
+    
+    visibility: hidden;
+}
+.layout .navOpener:hover + nav {
+    visibility: visible;
+}
+nav:hover {
+    visibility: visible;
+}
+
+.layout nav .holder {
+    font-size: 1.5rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 50px;
+    width: 200px;
+}
+.layout nav .navCont {
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+.layout nav a {
+    margin-top: 13px;
+    text-decoration: none;
+    color: var(--color4);
+    
+    display: block;
+    margin-bottom: 5px;
+    
+    font-size: 1.2rem;
+}
+
+#info-left-nav {
+    margin-top: 100px;
+    margin-bottom: 15px;
+}
+
+.layout nav a:hover {
+    color: var(--color1);
+}
+
+.layout nav p {
+    line-height: 1.2rem;
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+}
+
+.layout nav p b {
+    font-size: 0.8rem;
+}
+
+.layout nav img {
+    width: 100px;
+    /* filter:contrast(2); */
+    background-color: var(--color4);
+    border: 5px solid var(--color4);
+}
+
+.layout nav img:hover {
+    filter: contrast(0.3);
+}
+
+.layout nav img:active {
+    filter:invert(1);
+}
+
+#nav2 {
+    display: none;
+    outline: 1px solid var(--color6);
+    visibility: visible;
+    justify-content: space-around;
+    align-items:stretch;
+    align-content: flex-start;
+    background-color: var(--color2);
+    flex-wrap: nowrap;
+
+    /* column-gap: 20px; */
+    padding-top: 0;
+    padding-bottom: 0;
+
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    position: relative;
+}
+
+#nav2 * {
+    /* display: inline-block; */
+    flex: 1 1;
+    white-space: nowrap;
+    background-color: var(--color2);
+    text-align: center;
+
+    margin: 0;
+    padding: 10px 0;
+
+    margin: 0 7px;
+}
+
+.content {
+    flex: 1 1;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    position: relative;
+    padding-bottom: 150px;
+
+    display: flex;
+}
+main {
+    padding-top: 60px;
+    padding-left: 30px;
+    padding-right: 200px;
+}
+main p {
+    text-indent: 2rem;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.padded {
+    padding-left: 30px;
+    padding-right: 200px;
+}
+header {
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+h1, h2 {
+    position: relative;
+    white-space: nowrap;
+    
+    /* max content ne wrapa content ako je prozor pre mali */
+    width: max-content;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 1;
+
+    /* da se text ne može označiti */
+    user-select: none;
+
+
+    /* za bolju anchor animaciju */
+    transition: color 1.2s ease-out;
+}
+
+h1::after, h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40%;
+    height: 10px;
+    
+    background: linear-gradient(90deg, var(--color3) 0%, var(--color1) 50%, var(--color4) 75%, var(--color5) 100%);
+    border-bottom-right-radius: 5px;
+}
+h1 {
+    font-size: 4rem;
+}
+section {
+    margin-bottom: 90px;
+}
+h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+footer {
+    padding: 20px 300px 20px 150px;
+    /* background-color: var(--color2); */
+
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+
+    text-align: center;
+}
+footer .cont {
+    width: 100%;
+    height: 100%;
+}
+.gallery {
+    /* height: 360px; */
+    max-width: 100%;
+    background-color: var(--color1);
+    
+    display: flex;
+    margin: 0 auto;
+    /* padding: 5px;
+    gap: 5px; */
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+.gallery::-webkit-scrollbar {
+    /* display: none; */
+    width: 10px;
+}
+.gallery::-webkit-scrollbar-track {
+    background-color: var(--color1);
+    outline: 1px solid var(--color6);
+}
+.gallery::-webkit-scrollbar-thumb {
+    background-color: var(--color2);
+}
+.gallery::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color3);
+}
+.gallery .cont {
+    aspect-ratio: 5/2;
+    flex: 0 0 100%;
+    
+    scroll-snap-align: center;
+
+    position: relative;
+}
+.gallery .cont .bgImg {
+    height: 100%;
+
+    background: url("images/ja.jpg");
+    background-repeat: no-repeat;
+    
+    background-size:cover;
+    background-position: center;
+    
+    background-color: var(--color2);
+    background-blend-mode:normal;
+    filter: blur(3px);
+}
+.gallery .cont img {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 80%;
+    height: 80%;
+
+    object-fit: cover;
+    object-position: center;
+    
+    background-color: var(--color2);
+}
+.gallery .cont img:hover {
+    /* ne možemo ovo jer nemamo background-image i background-color na slici */
+    /* background-blend-mode: exclusion; */
+
+    filter: brightness(1.1);
+}
+#image-full-view {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    min-width: 85%;
+    aspect-ratio: 5/2;
+    background-image: url("images/ja.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    visibility: hidden;
+
+    background-color: var(--color4);
+    border-left: 20px solid var(--color4);
+    border-right: 20px solid var(--color4);
+}
+
+ul {
+    padding-left: 30px;
+}
+
+li {
+    list-style: none;
+    line-height: 1.5rem;
+}
+
+li:has(b) {
+    font-size: 1.15rem;
+    margin: 3px 0;
+}
+
+li:has(b)::before {
+    content: '';
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 8px;
+    background-image: url("images/square-check-solid.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    position: relative;
+    top: 0.1rem;
+}
+
+li:not(:has(b)) {
+    margin-left: 40px;
+}
+
+p {
+    line-height: 1.5rem;
+}
+
+.holder i {
+    flex: 0 0 35px;
+    position: relative;
+}
+
+.holder i:nth-of-type(2) {
+    margin-top: auto;
+}
+
+.hobby {
+    display: inline-block;
+    max-width: 300px;
+    padding: 15px 30px;
+    background-color: orange;
+    border-radius: 8px;
+    margin: 10px 8px;
+}
+
+.notEstablished {
+    font-size: 1rem;
+    display: inline-block;
+    background-color: var(--color1);
+    padding: 15px 30px;
+    max-width: 300px;
+    max-height: 50px;
+    position: absolute;
+
+    z-index: 4;
+}
+
+#visibility_setter {
+    width: 85px;
+    height: 50px;
+
+    position: fixed;
+    top: 40px;
+    right: 17px;
+    background-color: gray;
+
+    border-radius: 40px;
+    border: 5px solid rgb(71, 70, 70);
+    outline: 2px solid var(--color6);
+
+    scale: 0.7;
+    z-index: 3;
+}
+
+#visibility_cog {
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    
+    background-color: var(--color4);
+    
+    position: relative;
+    
+    background-image: url("images/sun.png");
+    background-size: contain;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    border: 1px solid black;
+    scale: 0.8;
+}
+
+header .infoBox {
+    text-align: left;
+    display: none;
+}
+
+header .infoBox img {
+    width: 7rem;
+    background-color: var(--color4);
+    border: 5px solid var(--color4);
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+header .infoBox img:hover {
+    filter: contrast(0.3);
+}
+
+.highlight {
+    color: var(--color0);
+}
+
+@media (max-width: 980px) {
+    #nav2 {
+        display: flex;
+    }
+    .navOpener {
+        display: none;
+    }
+    .layout nav {
+        display: none;
+    }
+    html {
+        font-size: 14px;
+    }
+    h2 {
+        padding-left: 30px !important;
+    }
+    h1::after, h2::after {
+        display: none !important;
+    }
+    .content, footer, h1, h2, section, div, p {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    header {
+        padding: 20px !important;
+        text-align: center !important;
+        margin: 0px !important;
+    }
+    main {
+        padding-top: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin-bottom: 120px !important;
+    }
+
+    section {
+        padding: 10px 15px 10px 15px !important;
+    }
+    .gallery {
+        margin-top: 10px!important;
+        margin-bottom: 15px!important;
+    }
+    footer {
+        padding: 40px !important;
+    }
+    .hobby {
+        padding: 12px !important;
+        margin: 7px 5px !important;
+    } 
+    #hobi {
+        margin-bottom: 13px !important;
+    }
+
+    header .infoBox {
+        display: block;
+    }
+}
+
+@media (max-width: 765px) {
+    html {
+        font-size: 11px;
+    }
+    h2 {
+        padding-left: 30px !important;
+    }
+    h1::after, h2::after {
+        display: none !important;
+    }
+    .content, footer, h1, h2, section, div, p {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    header {
+        padding: 20px !important;
+        text-align: center !important;
+        margin: 0px !important;
+    }
+    main {
+        padding-top: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin-bottom: 120px !important;
+    }
+    section {
+        padding: 10px 15px 10px 15px !important;
+    }
+    .gallery {
+        margin-top: 10px!important;
+        margin-bottom: 15px!important;
+    }
+    footer {
+        padding: 40px !important;
+    }
+    .hobby {
+        padding: 10px !important;
+        margin: 5px 3px !important;
+    } 
+    #hobi {
+        margin-bottom: 13px !important;
+    }
+    
+}
+
+@media (max-width: 625px) {
+    html {
+        font-size: 8px;
+    }
+    p, ul li, .hobby {
+        font-size: 10px;
+        line-height: 15px;
+    }
+}
+
+@media (max-width: 485px) {
+    html {
+        font-size: 6px;
+    }
+}
+
+@media (max-width: 395px) {
+    html {
+        font-size: 4px;
+    }
+}
